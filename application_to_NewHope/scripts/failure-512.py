@@ -2,6 +2,8 @@ from math import *
 import operator as op
 import numpy as np
 
+# For new parameters: k=5,q=7681, we set bound_cc=17600, tau=19.3 and t_CC=0.0160. The result of failure is 2^(-258).
+# An alternative parameter set: k=6, q=7681, we set bound_cc=17500, tau=17.7 and t_CC=0.0150 The result of failure is 2^(-216).
 dim  = 512
 k = 5
 q = 7681
