@@ -5,7 +5,7 @@ import numpy as np
 dim  = 512
 k = 5
 q = 7681
-bound_CC = 34000    # Bound n*mu+beta to use in Cramer-Chernoff Ineq.
+bound_CC = 17500    # Bound n*mu+beta to use in Cramer-Chernoff Ineq.
 n = 2 * dim / 2      # Number of samples in Cramer-Chernoff Ineq.
 
 
@@ -107,7 +107,7 @@ for y in y_list:
 		p =  exp(- t*beta + n*log(Moment(t)))
 		return p
 
-	t_CC = 0.0060
+	t_CC = 0.0160
 	p_CC = ChernoffCramer(n,t_CC,bound_CC)
 
 	print "Chernoff-Cramer Bound", p_CC, " = 2^", log(p_CC)/log(2)
