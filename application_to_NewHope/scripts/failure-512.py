@@ -3,8 +3,8 @@ import operator as op
 import numpy as np
 
 dim  = 512
-k = 8
-q = 12289
+k = 5
+q = 7681
 bound_CC = 34000    # Bound n*mu+beta to use in Cramer-Chernoff Ineq.
 n = 2 * dim / 2      # Number of samples in Cramer-Chernoff Ineq.
 
@@ -15,7 +15,7 @@ check_each_y = True
 
 
 subg_param = sqrt(k/2)
-tau = 17.6  #(sqrt(2)/2.) * 3*q/4 / (subg_value +2*k)
+tau = 19.4  #((sqrt(2)/2.) * 3*q/4-2*k) / (subg_value +2*k)
 
 
 subg_value = sqrt(bound_CC) * subg_param * tau
