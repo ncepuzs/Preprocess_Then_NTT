@@ -78,7 +78,7 @@ int main()
     
     if(poly_equal(poly_p1, poly_p2)&&poly_equal(poly_p1, poly_p3))
     {
-        printf("The result of pre_ntt is correct!\n");
+        printf("The result of pt_ntt is correct!\n");
     }
    
     else 
