@@ -17,7 +17,7 @@ check_each_y = True
 
 
 subg_param = sqrt(k/2)
-tau = 19.4  #((sqrt(2)/2.) * 3*q/4-2*k) / (subg_value +2*k)
+tau = 19.4  #((sqrt(2)/2.) * 3*q/4-2*k) / (sqrt(bound_CC*k/2))
 
 
 subg_value = sqrt(bound_CC) * subg_param * tau
