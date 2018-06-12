@@ -14,7 +14,7 @@ check_each_y = False
 # experimentally, they are always equal probably due to symmetries
 
 subg_param = sqrt(k/2.)
-tau=(3*q/4.-4*k-5)/sqrt(bound_CC*k/2.)
+tau= 18.1 #(3*q/4.-4*k-5)/sqrt(bound_CC*k/2.)
 subg_value = sqrt(bound_CC) * subg_param * tau
 p_subg = exp(-tau**2/2)
 
