@@ -46,21 +46,21 @@ if __name__ == "__main__":
     ps_paranoid = KyberParameterSet(256, 4, 1, 1, 3329, 2**10, 2**10, 2**3)
 
     # Analyses
-    print ("Kyber512 (light):")
+    print ("small_Kyber512 (light):")
     print ("--------------------")
     print ("security:")
     MLWE_summarize_attacks(Kyber_to_MLWE(ps_light))
     summarize(ps_light)
     print ()
 
-    print ("Kyber768 (recommended):")
+    print ("small_Kyber768 (recommended):")
     print ("--------------------")
     print ("security:")
     MLWE_summarize_attacks(Kyber_to_MLWE(ps_recommended))
     summarize(ps_recommended)
     print ()
 
-    print ("Kyber1024 (paranoid):")
+    print ("small_Kyber1024 (paranoid):")
     print ("--------------------")
     print ("security:")
     MLWE_summarize_attacks(Kyber_to_MLWE(ps_paranoid))
