@@ -23,7 +23,7 @@
 #define KYBER_SYMBYTES 32   /* size in bytes of shared key, hashes, and seeds */
 
 #define KYBER_POLYBYTES              384 
-#define KYBER_POLYCOMPRESSEDBYTES    128 
+#define KYBER_POLYCOMPRESSEDBYTES    160 
 #define KYBER_POLYVECBYTES           (KYBER_K * KYBER_POLYBYTES)   
 #define KYBER_POLYVECCOMPRESSEDBYTES (KYBER_K * 320) 
 
