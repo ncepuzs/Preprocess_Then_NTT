@@ -16,16 +16,20 @@
 **************************************************/
 void poly_compress(unsigned char *r, const poly *a)
 {
-  uint32_t t[2];
+  uint32_t t[8];
   unsigned int i,j,k=0;
 
-  for(i=0;i<KYBER_N;i+=2)
+  for(i=0;i<KYBER_N;i+=8)
   {
-    for(j=0;j<2;j++)
-      t[j] = (((freeze(a->coeffs[i+j]) << 4) + KYBER_Q/2)/KYBER_Q) & 15;
+    for(j=0;j<8;j++)
+      t[j] = (((freeze(a->coeffs[i+j]) << 5) + KYBER_Q/2)/KYBER_Q) & 31;
 
-    r[k]   =  t[0]       | (t[1] << 4);
-    k += 1;
+    r[k]   =  t[0]       | (t[1] << 5);
+    r[k+1] = (t[1]>>3)   | (t[2] << 2)| (t[3] << 7);
+    r[k+2] = (t[3]>>1)   | (t[4] << 4);
+    r[k+3] = (t[4]>>4)   | (t[5] << 1)| (t[6] << 6);
+    r[k+4] = (t[6]>>2)   | (t[7] << 3);
+    k += 5;
   }
 }
 
@@ -41,11 +45,17 @@ void poly_compress(unsigned char *r, const poly *a)
 void poly_decompress(poly *r, const unsigned char *a)
 {
   unsigned int i;
-  for(i=0;i<KYBER_N;i+=2)
+  for(i=0;i<KYBER_N;i+=8)
   {
-    r->coeffs[i+0] =  (((a[0] & 15) * KYBER_Q) + 8)>> 4;
-    r->coeffs[i+1] = ((((a[0] >> 4) & 15) * KYBER_Q)+ 8) >> 4;
-    a += 1;
+    r->coeffs[i+0] =  (((a[0] & 31) * KYBER_Q) + 16) >> 5;
+    r->coeffs[i+1] =  (((a[0] >> 5) & 7 |((a[1] << 3) & 31)) * KYBER_Q+ 16) >> 5;
+    r->coeffs[i+2] =  (((a[1] >> 2) & 31) * KYBER_Q + 16) >> 5;
+    r->coeffs[i+3] =  (((a[1] >> 7) & 1 |((a[2] << 1) & 31)) * KYBER_Q+ 16) >> 5;
+    r->coeffs[i+4] =  (((a[2] >> 4) & 15|((a[3] << 4) & 31)) * KYBER_Q + 16)>> 5;
+    r->coeffs[i+5] =  (((a[3] >> 1) & 31) * KYBER_Q + 16) >> 5;
+    r->coeffs[i+6] =  (((a[3] >> 6) & 3 |((a[4] << 2) & 31)) * KYBER_Q + 16)>> 5;
+    r->coeffs[i+7] =  (((a[4] >> 3) & 31) * KYBER_Q + 16) >> 5;
+    a += 5;
   }
 }
 /*************************************************
